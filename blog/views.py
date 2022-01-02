@@ -3,9 +3,8 @@ from django.template.defaultfilters import title
 from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
-from taggit.models import Tag
 
-from .models import Article
+from .models import Article, Tag
 from .forms import ArticleForm
  
 def display_view(request):
@@ -53,23 +52,3 @@ def detail_view(request, id):
     context["data"] = Article.objects.get(id = id)
          
     return render(request, "detail_view.html", context)
-
-# def update_view(request, id):
-#     context ={}
- 
-#     obj = get_object_or_404(Article, id = id)
- 
-#     form = ArticleForm(request.POST or None, instance = obj)
- 
-#     if form.is_valid():
-#         form.save()
-#         return HttpResponseRedirect("/"+id)
- 
-#     context["form"] = form
- 
-#     return render(request, "update_view.html", context)
-
-# def delete_view(request, id):
-#     obj = get_object_or_404(Article, id = id)
-#     obj.delete()
-#     return HttpResponseRedirect("/")
