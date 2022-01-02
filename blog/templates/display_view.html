@@ -1,0 +1,58 @@
+{%include 'layout.html'%}
+{%block body%}
+
+<div class="main container mt-3">
+    <h1>View Article</h1>
+    <!-- <form method="POST" action="{% url 'display_view' %}" enctype="multipart/form-data" >
+        
+        {% csrf_token %}
+        
+        <button type="submit">Filter</button>
+    </form> -->
+    <div class="form-group">
+        <input class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for tags" />
+    </div>
+    <a href="{% url 'create_view' %}">Add Articles</a><br>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Tag</th>
+                <th>Content</th>
+            </thead>
+            <tbody>
+                {% for data in dataset %}
+                <tr>
+                    <td><a href="{% url 'detail_view' data.id %}">{{ data.title }}</a></td>
+                    <td><img width="100px" src="../../media/{{data.image}}" alt="{{ data.image }}"></td>
+                    <td>{% for tag in data.tags.all %}{% if forloop.counter0 == 0 %}{{tag}}{% else %}, {{tag}}{% endif %}{% endfor %}</td>
+                    <td>{{ data.content }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</div>
+
+{%endblock%}

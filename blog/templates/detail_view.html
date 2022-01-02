@@ -1,0 +1,35 @@
+{%include 'layout.html'%}
+
+{%block body%}
+<div class="main container mt-3">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Title:</td>
+                    <td>{{data.title}}</td>
+                </tr>
+                <tr>
+                    <td>Content:</td>
+                    <td>{{data.content}}</td>
+                </tr>
+                <tr>
+                    <td>Creation Date:</td>
+                    <td>{{data.creation_date}}</td>
+                </tr>
+                <tr>
+                    <td>Image:</td>
+                    <td><img class="w-100" src="../../media/{{data.image}}" alt="{{ data.image }}"> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{%endblock%}

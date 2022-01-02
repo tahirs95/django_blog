@@ -1,0 +1,25 @@
+{%include 'layout.html'%}
+
+{%block body%}
+
+<div class="main container mt-3">
+    <h1>Add Article</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg">Submit</button>
+        </div>
+    </form>
+
+</div>
+<script>
+    $("input").addClass("form-control")
+    $("textarea").addClass("form-control")
+    $("select").addClass("form-control")
+
+</script>
+{%endblock%}
